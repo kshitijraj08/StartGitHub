@@ -1,37 +1,36 @@
-
 name: Manual Python Workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      python_version:
-        description: 'Python version to use'
-        required: true
-        default: '3.11'
-      run_tests:
-        description1: 'Run tests (yes/no)'
-        required1: true
-        default1: 'yes'
+  workflow_dispatch:
+    inputs:
+      python_version:
+        description: 'Python version to use'
+        required: true
+        default: '3.10'
+      run_tests:
+        description: 'Run tests (yes/no)'
+        required: true
+        default: 'yes'
 
 jobs:
-  manual-job:
-    runs-on: ubuntu-latest
+  manual-job:
+    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ github.event.inputs.python_version }}
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ github.event.inputs.python_version }}
 
-      - name: Print Python version
-        run: python --version
+      - name: Print Python version
+        run: python --version
 
-      - name: Run tests (conditionally)
-        if: ${{ github.event.inputs.run_tests == 'yes' }}
-        run: |
-          echo "Running tests..."
-          # Replace with actual test command
-          echo "pytest"
+      - name: Run tests (conditionally)
+        if: ${{ github.event.inputs.run_tests == 'yes' }}
+        run: |
+          echo "Running tests..."
+          # Replace with actual test command
+          echo "pytest"
